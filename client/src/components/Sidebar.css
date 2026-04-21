@@ -1,0 +1,26 @@
+.sidebar {
+  width: var(--sidebar-w); background: var(--bg2); border-right: 1px solid var(--border);
+  height: 100vh; position: fixed; top: 0; left: 0; display: flex; flex-direction: column;
+  z-index: 50; transition: transform 0.25s ease;
+}
+.sb-logo { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; padding: 1.4rem 1.4rem 1rem; color: var(--text); letter-spacing: -0.5px; border-bottom: 1px solid var(--border); }
+.sb-logo span { color: var(--green); }
+.sb-nav { flex: 1; padding: 0.8rem 0.75rem; display: flex; flex-direction: column; gap: 2px; }
+.sb-link { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--radius); font-size: 13px; color: var(--muted); transition: all var(--transition); position: relative; }
+.sb-link:hover { background: var(--bg3); color: var(--text); }
+.sb-link.active { background: rgba(16,185,129,0.12); color: var(--green); }
+.sb-icon { display: flex; align-items: center; }
+.sb-new-badge { margin-left: auto; font-size: 9px; background: var(--green); color: #fff; padding: 2px 6px; border-radius: 10px; font-weight: 600; }
+.sb-footer { padding: 1rem 1.2rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; }
+.sb-user { display: flex; align-items: center; gap: 10px; }
+.sb-avatar { width: 34px; height: 34px; border-radius: var(--radius); background: var(--green); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: #fff; flex-shrink: 0; }
+.sb-user-name { font-size: 13px; font-weight: 500; }
+.sb-user-email { font-size: 11px; color: var(--muted2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 140px; }
+.sb-logout { display: flex; align-items: center; gap: 8px; background: none; border: 1px solid var(--border); border-radius: var(--radius); color: var(--muted); font-size: 12px; padding: 7px 12px; transition: all var(--transition); width: 100%; }
+.sb-logout:hover { background: rgba(239,68,68,0.1); color: var(--red2); border-color: rgba(239,68,68,0.2); }
+.sb-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 49; }
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .sb-backdrop { display: block; }
+}

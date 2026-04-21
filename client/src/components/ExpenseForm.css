@@ -1,0 +1,11 @@
+.expense-form { max-width: 680px; }
+.form-alert { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); border-radius: var(--radius); padding: 10px 14px; font-size: 13px; color: var(--red2); margin-bottom: 1rem; }
+.ef-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; }
+.ef-upload-zone { border: 1px dashed var(--border2); border-radius: var(--radius); padding: 1.2rem; cursor: pointer; transition: border-color var(--transition); min-height: 90px; display: flex; align-items: center; justify-content: center; }
+.ef-upload-zone:hover { border-color: var(--green); }
+.ef-upload-placeholder { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; text-align: center; }
+.ef-upload-icon { font-size: 1.5rem; }
+.ef-preview { max-height: 160px; max-width: 100%; border-radius: var(--radius); object-fit: contain; }
+.ef-filename { font-size: 11px; color: var(--muted2); margin-top: 4px; }
+.ef-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 0.5rem; }
+@media (max-width: 500px) { .ef-grid { grid-template-columns: 1fr; } }
