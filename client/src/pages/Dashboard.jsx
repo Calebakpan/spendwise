@@ -3,12 +3,15 @@ import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, BarElement, T
 import { useAuth } from '../context/AuthContext';
 import { useStats } from '../hooks/useExpenses';
 import { getCategoryMeta, formatCurrency, formatDate, MONTHS } from '../utils/helpers';
+import { useStats, useIncomeStats } from '../hooks/useExpenses';
 import { Link } from 'react-router-dom';
 import './Dashboard.css';
 
 ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 const chartTooltip = { backgroundColor: '#1e293b', titleColor: '#94a3b8', bodyColor: '#f1f5f9', borderColor: 'rgba(255,255,255,0.1)', borderWidth: 1, padding: 10 };
+const { stats: incomeStats } = useIncomeStats();
+const netBalance = (incomeStats?.total?.total || 0) - (stats?.total?.total || 0);
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -56,9 +59,23 @@ export default function Dashboard() {
 
       <div className="dash-kpis">
         <div className="dash-kpi">
+          <div className="kpi-label">Total Income</div>
+          <div className="kpi-value" style={{ color: '#10b981' }}>{formatCurrency(incomeStats?.total?.total || 0)}</div>
+          <div className="kpi-sub">{incomeStats?.total?.count || 0} records</div>
+        </div>
+        <div className="dash-kpi">
           <div className="kpi-label">Total Spent</div>
           <div className="kpi-value">{formatCurrency(stats?.total?.total || 0)}</div>
           <div className="kpi-sub">{stats?.total?.count || 0} transactions</div>
+        </div>
+        <div className="dash-kpi">
+          <div className="kpi-label">Net Balance</div>
+          <div className="kpi-value" style={{ color: netBalance >= 0 ? '#10b981' : '#ef4444' }}>
+            {formatCurrency(Math.abs(netBalance))}
+          </div>
+          <div className={`kpi-sub ${netBalance >= 0 ? 'up' : 'down'}`}>
+            {netBalance >= 0 ? '▲ Surplus' : '▼ Deficit'}
+          </div>
         </div>
         <div className="dash-kpi">
           <div className="kpi-label">This Month</div>
@@ -66,16 +83,6 @@ export default function Dashboard() {
           <div className={`kpi-sub ${diff > 0 ? 'up' : 'down'}`}>
             {diff > 0 ? '▲' : '▼'} {Math.abs(diff).toFixed(1)}% vs last month
           </div>
-        </div>
-        <div className="dash-kpi">
-          <div className="kpi-label">Last Month</div>
-          <div className="kpi-value">{formatCurrency(stats?.lastMonth || 0)}</div>
-          <div className="kpi-sub">Previous period</div>
-        </div>
-        <div className="dash-kpi">
-          <div className="kpi-label">Categories</div>
-          <div className="kpi-value">{stats?.byCategory?.length || 0}</div>
-          <div className="kpi-sub">Spending areas</div>
         </div>
       </div>
 

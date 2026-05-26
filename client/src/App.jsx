@@ -9,6 +9,8 @@ import Dashboard from './pages/Dashboard';
 import Expenses from './pages/Expenses';
 import AddExpense from './pages/AddExpense';
 import Profile from './pages/Profile';
+import Income from './pages/Income';
+import AddIncome from './pages/AddIncome';
 
 function ProtectedLayout() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,6 +54,8 @@ function ProtectedLayout() {
           <Route path="expenses" element={<Expenses />} />
           <Route path="add" element={<AddExpense />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="income" element={<Income />} />
+          <Route path="add-income" element={<AddIncome />} />
           <Route path="*" element={<Navigate to="dashboard" replace />} />
         </Routes>
       </div>

@@ -1,0 +1,16 @@
+.btn-income {
+    background: #10b981;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+.btn-income:hover { background: #0ea572; }
+.btn-income:disabled { opacity: 0.5; cursor: not-allowed; }

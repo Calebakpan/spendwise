@@ -22,6 +22,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/expenses', require('./routes/expenses'));
+app.use('/api/income', require('./routes/income'));
 
 // Health check
 app.get('/api/health', (req, res) => res.json({ status: 'ok', message: 'SpendWise API running' }));
