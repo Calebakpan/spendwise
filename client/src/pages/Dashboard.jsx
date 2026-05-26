@@ -1,20 +1,22 @@
+import { useState, useEffect } from 'react';
 import { Doughnut, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, BarElement, Tooltip, Legend } from 'chart.js';
 import { useAuth } from '../context/AuthContext';
-import { getCategoryMeta, formatCurrency, formatDate, MONTHS } from '../utils/helpers';
 import { useStats, useIncomeStats } from '../hooks/useExpenses';
+import { getCategoryMeta, formatCurrency, formatDate, MONTHS } from '../utils/helpers';
 import { Link } from 'react-router-dom';
 import './Dashboard.css';
 
 ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 const chartTooltip = { backgroundColor: '#1e293b', titleColor: '#94a3b8', bodyColor: '#f1f5f9', borderColor: 'rgba(255,255,255,0.1)', borderWidth: 1, padding: 10 };
-const { stats: incomeStats } = useIncomeStats();
-const netBalance = (incomeStats?.total?.total || 0) - (stats?.total?.total || 0);
 
 export default function Dashboard() {
   const { user } = useAuth();
   const { stats, loading } = useStats();
+  const { stats: incomeStats } = useIncomeStats();
+  const netBalance = (incomeStats?.total?.total || 0) - (stats?.total?.total || 0);
+  const diff = stats ? ((stats.thisMonth - stats.lastMonth) / (stats.lastMonth || 1)) * 100 : 0;
 
   if (loading) return (
     <div className="page-content">
