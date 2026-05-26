@@ -16,7 +16,6 @@ export default function Dashboard() {
   const { stats, loading } = useStats();
   const { stats: incomeStats } = useIncomeStats();
   const netBalance = (incomeStats?.total?.total || 0) - (stats?.total?.total || 0);
-  const diff = stats ? ((stats.thisMonth - stats.lastMonth) / (stats.lastMonth || 1)) * 100 : 0;
 
   if (loading) return (
     <div className="page-content">
