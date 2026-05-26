@@ -21,7 +21,6 @@ export function useExpenses(filters = {}) {
   }, [JSON.stringify(filters)]);
 
   useEffect(() => { fetch(); }, [fetch]);
-
   return { expenses, loading, error, refetch: fetch };
 }
 
