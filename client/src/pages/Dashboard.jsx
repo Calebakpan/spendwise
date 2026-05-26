@@ -1,7 +1,6 @@
 import { Doughnut, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, BarElement, Tooltip, Legend } from 'chart.js';
 import { useAuth } from '../context/AuthContext';
-import { useStats } from '../hooks/useExpenses';
 import { getCategoryMeta, formatCurrency, formatDate, MONTHS } from '../utils/helpers';
 import { useStats, useIncomeStats } from '../hooks/useExpenses';
 import { Link } from 'react-router-dom';
